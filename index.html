@@ -878,22 +878,19 @@
 
     <!-- Theme Toggle Script -->
     <script>
-        // Initialize theme from localStorage or system preference
+        // Always follow system preference on load
         (function() {
-            const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            if (prefersDark) {
                 document.documentElement.classList.add('dark');
                 document.getElementById('theme-toggle').classList.add('dark');
             }
         })();
 
-        // Theme toggle handler
+        // Theme toggle handler (manual override for the session only)
         document.getElementById('theme-toggle').addEventListener('click', function() {
             const isDark = document.documentElement.classList.toggle('dark');
             this.classList.toggle('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     </script>
 
